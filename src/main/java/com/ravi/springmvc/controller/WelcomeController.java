@@ -1,14 +1,12 @@
 package com.ravi.springmvc.controller;
 
+import com.ravi.springmvc.annotation.Loggable;
 import com.ravi.springmvc.entity.User;
 import com.ravi.springmvc.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WelcomeController {
@@ -16,9 +14,11 @@ public class WelcomeController {
     @Autowired
     private UserRepo userRepo;
 
+    @Loggable
     @RequestMapping("/hello")
-    public String sayHello(Model model) {
+    public String sayHello(Model model, @RequestParam String name) {
         model.addAttribute("greeting", "Hello Spring Boot+Spring MVC");
+        model.addAttribute("name", name);
 
         return "welcome";
     }
