@@ -7,22 +7,37 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Welcome to Spring MVC</title>
 </head>
 <body>
-<form action="/adduser" method="post">
-
-    Hi,<br/>
-    ${user.firstName}<br/>
-    ${user.lastName}<br/>
-    ${user.title}<br/>
-
-    <input type="text" name="firstName"/><br/>
-    <input type="text" name="lastName"/><br/>
-    <input type="text" name="title"/><br/>
-    <input type="submit"><br/>
-</form>
+<form:form action="/adduser" method="post" modelAttribute="user">
+    <c:out value="${user.title}"/>
+    <c:out value="${user.firstName}"/>
+    <c:out value="${user.lastName}"/>
+    <table>
+        <tr>
+            <td><c:out value="${'Hi,'}"/>
+            </td>
+        </tr>
+        <tr>
+            <td><form:label path="title">Title</form:label></td>
+            <td><form:input path="title"/></td>
+        </tr>
+        <tr>
+            <td><form:label path="firstName">First Name</form:label></td>
+            <td><form:input path="firstName"/></td>
+        </tr>
+        <tr>
+            <td><form:label path="lastName">Last Name</form:label></td>
+            <td><form:input path="lastName"/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit"/></td>
+        </tr>
+    </table>
+</form:form>
 </body>
 </html>

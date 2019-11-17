@@ -17,6 +17,8 @@ public class WelcomeController {
     @Loggable
     @RequestMapping("/hello")
     public String sayHello(Model model, @RequestParam String name) {
+
+        model.addAttribute("user", new User());
         model.addAttribute("greeting", "Hello Spring Boot+Spring MVC");
         model.addAttribute("name", name);
 
